@@ -5,15 +5,15 @@ import PropTypes from 'prop-types';
 import { styles } from '../material/constants';
 import Home from './Home';
 import Calendar from './Calendar';
+import Forecast from '../api/Forecast';
+
+import Geocode from 'react-geocode';
 
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 
 function Copyright() {
@@ -39,10 +39,14 @@ const sections = {
     Texting: <texting/>
 };
 
+// TODO: https://joanmira.com/tutorial-build-a-weather-app-with-react/
 class Welcome extends React.Component {
 
     constructor(props) {
         super(props);
+
+        Geocode.setApiKey("AIzaSyCUSXmTzy8UPJarrWqvfeTGVs_fe-L_qpU");
+
         this.state = {
             body: <Home/>
         };
@@ -64,7 +68,7 @@ class Welcome extends React.Component {
             <Container maxWidth="lg">
             {/* Header */}
                 <Toolbar className={classes.toolbar}>
-                <Button size="small">Subscribe</Button>
+                <Forecast latitude={42.9634} longitude={-85.6681} name='Grand Rapids' />
                 <Typography
                     component="h2"
                     variant="h5"
@@ -75,12 +79,7 @@ class Welcome extends React.Component {
                 >
                     {emoji.emojify('Happy Birthday Emma! :heart:')}
                 </Typography>
-                <IconButton>
-                    <SearchIcon />
-                </IconButton>
-                <Button variant="outlined" size="small" onClick={() => this.props.onLogout()}>
-                    Sign Out
-                </Button>
+                <Forecast latitude={42.2808} longitude={-83.7430} name='Ann Arbor' />
                 </Toolbar>
                 <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
                 {Object.keys(sections).map(section => (

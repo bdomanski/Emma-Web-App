@@ -1,4 +1,18 @@
 export const styles = theme => ({
+    root: {
+      width: '100%',
+      maxWidth: 1000,
+      backgroundColor: theme.palette.background.paper,
+    },
+    paper: {
+      maxWidth: 500,
+      minWidth: 300,
+      margin: `${theme.spacing(1)}px auto`,
+      padding: theme.spacing(2),
+    },
+    inline: {
+      display: 'inline',
+    },
     toolbar: {
         borderBottom: `1px solid ${theme.palette.divider}`,
     },

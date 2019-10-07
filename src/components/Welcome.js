@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { styles } from '../material/constants';
 import Home from './Home';
 import Calendar from './Calendar';
+import Texting from './Texting';
+import Countdown from './Countdown';
 import Forecast from '../api/Forecast';
 
 import Geocode from 'react-geocode';
@@ -35,8 +37,8 @@ function Copyright() {
 const sections = {
     Home: <Home/>,
     Calendar: <Calendar/>,
-    Countdown: <countdown/>,
-    Texting: <texting/>
+    Countdown: <Countdown/>,
+    Texting: <Texting/>
 };
 
 // TODO: https://joanmira.com/tutorial-build-a-weather-app-with-react/
@@ -47,8 +49,10 @@ class Welcome extends React.Component {
 
         Geocode.setApiKey("AIzaSyCUSXmTzy8UPJarrWqvfeTGVs_fe-L_qpU");
 
+        const currentPage = window.location.href.split('/').pop();
+
         this.state = {
-            body: <Home/>
+            body: sections[currentPage] ? sections[currentPage] : <Home/>
         };
     }
 
@@ -105,10 +109,29 @@ class Welcome extends React.Component {
             <footer className={classes.footer}>
                 <Container maxWidth="lg">
                 <Typography variant="h6" align="center" gutterBottom>
-                    Footer
+                    TODO:
                 </Typography>
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Something here to give the footer a purpose!
+                    Pick location for weather data
+                </Typography>
+
+                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+                    Complete countdown - persist data, add new countdowns, add image for countdown
+                </Typography>
+
+                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+                    Happy birthday homepage
+                </Typography>
+
+                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+                    Update Google Calendar
+                </Typography>
+
+                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+                    Create image set / blog entries / something to replace texting
+                </Typography>
+                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+                    Save images in one tab, use them in countdowns, main page, etc
                 </Typography>
                 <Copyright />
                 </Container>

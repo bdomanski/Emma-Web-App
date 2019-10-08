@@ -81,4 +81,13 @@ export const styles = theme => ({
         marginTop: theme.spacing(8),
         padding: theme.spacing(6, 0),
     },
+    emailButton: {
+      maxWidth: '240px',
+      maxHeight: '135px',
+      minWidth: '240px',
+      minHeight: '135px'
+    },
+    divider: {
+      marginBottom: theme.spacing(2),
+    },
 });

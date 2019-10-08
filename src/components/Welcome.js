@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { styles } from '../material/constants';
 import Home from './Home';
 import Calendar from './Calendar';
-import Texting from './Texting';
+import Email from './Email';
 import Countdown from './Countdown';
 import Forecast from '../api/Forecast';
 
@@ -17,6 +17,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import Container from '@material-ui/core/Container';
+import Divider from '@material-ui/core/Divider';
 
 function Copyright() {
     return (
@@ -38,7 +39,7 @@ const sections = {
     Home: <Home/>,
     Calendar: <Calendar/>,
     Countdown: <Countdown/>,
-    Texting: <Texting/>
+    Email: <Email/>
 };
 
 // TODO: https://joanmira.com/tutorial-build-a-weather-app-with-react/
@@ -66,10 +67,11 @@ class Welcome extends React.Component {
 
     render() {
         const { classes } = this.props;
+
         return (
             <React.Fragment>
             <CssBaseline />
-            <Container maxWidth="lg">
+            <Container maxWidth="lg" spacing={2}>
             {/* Header */}
                 <Toolbar className={classes.toolbar}>
                 <Forecast latitude={42.9634} longitude={-85.6681} name='Grand Rapids' />
@@ -100,6 +102,7 @@ class Welcome extends React.Component {
                     </Link>
                 ))}
                 </Toolbar>
+                <Divider className={classes.divider}/>
             {/* End Header */}
             {/* Body */}
                 {this.getBody()}

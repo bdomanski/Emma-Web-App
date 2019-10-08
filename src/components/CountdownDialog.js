@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Moment from 'moment';
 
 import { styles } from '../material/constants';
 
@@ -19,20 +20,31 @@ class CountdownDialog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false
+            open: false,
+            selectedDate: null,
+            name: ''
         };
     }
 
     handleClickOpen() {
         this.setState({ open: true });
-    };
+    }
 
     handleClose() {
         this.setState({ open: false });
-    };
+    }
 
     handleDateChange(date) {
-        this.setState({selectedDate: date});
+        this.setState({ selectedDate: Moment(`${date.format('YYYY-MM-DD')}T00:00:00`) });
+    }
+
+    handleNameChange(name) {
+        this.setState({ name: name.target.value });
+    }
+
+    handleNewCountdown() {
+        this.props.handleNewCountdown(this.state.name, this.state.selectedDate);
+        this.handleClose();
     }
 
     render() {
@@ -50,6 +62,7 @@ class CountdownDialog extends React.Component {
                 id="name"
                 label="Name"
                 type="email"
+                onChange={this.handleNameChange.bind(this)}
                 fullWidth
             />
             <KeyboardDatePicker
@@ -70,7 +83,7 @@ class CountdownDialog extends React.Component {
             <Button onClick={this.handleClose.bind(this)} color="primary">
                 Cancel
             </Button>
-            <Button onClick={this.handleClose.bind(this)} color="primary">
+            <Button onClick={this.handleNewCountdown.bind(this)} color="primary">
                 Create
             </Button>
             </DialogActions>

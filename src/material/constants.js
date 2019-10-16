@@ -10,6 +10,10 @@ export const styles = theme => ({
       margin: `${theme.spacing(1)}px auto`,
       padding: theme.spacing(2),
     },
+    homePaper: {
+      marginBottom: theme.spacing(2),
+      padding: theme.spacing(2),
+    },
     inline: {
       display: 'inline',
     },
@@ -87,7 +91,28 @@ export const styles = theme => ({
       minWidth: '240px',
       minHeight: '135px'
     },
+    noteButton: {
+      justifyContent: 'space-around'
+    },
     divider: {
       marginBottom: theme.spacing(2),
+    },
+    home: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+    },
+    masonryGrid: {
+        display: 'flex',
+        width: 'auto',
+        padding: theme.spacing(2),
+    },
+    masonryGridColumn: {
+        padding: theme.spacing(1),
+        backgroundClip: 'padding-box',
+    },
+    noteBody: {
+        whiteSpace: 'pre'
     },
 });

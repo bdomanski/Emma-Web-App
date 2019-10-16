@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Moment from 'moment';
 
 import { styles } from '../material/constants';
 
@@ -11,18 +10,15 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import {
-    KeyboardDatePicker,
-} from '@material-ui/pickers';
 
-class CountdownDialog extends React.Component {
+class HomeDialog extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             open: false,
-            selectedDate: null,
-            name: ''
+            name: '',
+            body: ''
         };
     }
 
@@ -34,24 +30,31 @@ class CountdownDialog extends React.Component {
         this.setState({ open: false });
     }
 
-    handleDateChange(date) {
-        this.setState({ selectedDate: Moment(`${date.format('YYYY-MM-DD')}T00:00:00`) });
-    }
-
     handleNameChange(name) {
         this.setState({ name: name.target.value });
     }
 
-    handleNewCountdown() {
-        this.props.handleNewCountdown(this.state.name, this.state.selectedDate);
+    handleBodyChange(body) {
+        this.setState({ body: body.target.value });
+    }
+
+    handleNewNote() {
+        this.props.handleNewNote(this.state.name, this.state.body);
         this.handleClose();
     }
 
     render() {
+        const { classes } = this.props;
+
         return (
         <div>
-        <Button variant="contained" color="primary" size="large" onClick={this.handleClickOpen.bind(this)}>
-            New Countdown
+        <Button
+            className={classes.noteButton}
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={this.handleClickOpen.bind(this)}>
+            New Note
         </Button>
         <Dialog open={this.state.open} onClose={this.handleClose.bind(this)} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title">Countdown</DialogTitle>
@@ -64,28 +67,24 @@ class CountdownDialog extends React.Component {
                 type="email"
                 onChange={this.handleNameChange.bind(this)}
                 fullWidth
-                multiline
-                rowsMax="2"
             />
-            <KeyboardDatePicker
-                disableToolbar
-                variant="inline"
-                format="MM/DD/YYYY"
-                margin="normal"
-                id="date-picker-inline"
-                label="Event Date"
-                value={this.state.selectedDate}
-                onChange={this.handleDateChange.bind(this)}
-                KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                }}
+            <TextField
+                className={classes.noteBody}
+                margin="dense"
+                id="body"
+                label="Body"
+                type="email"
+                onChange={this.handleBodyChange.bind(this)}
+                fullWidth
+                multiline
+                rowsMax="20"
             />
             </DialogContent>
             <DialogActions>
             <Button onClick={this.handleClose.bind(this)} color="primary">
                 Cancel
             </Button>
-            <Button onClick={this.handleNewCountdown.bind(this)} color="primary">
+            <Button onClick={this.handleNewNote.bind(this)} color="primary">
                 Create
             </Button>
             </DialogActions>
@@ -95,8 +94,8 @@ class CountdownDialog extends React.Component {
     }
 }
 
-CountdownDialog.propTypes = {
+HomeDialog.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CountdownDialog);
+export default withStyles(styles)(HomeDialog);

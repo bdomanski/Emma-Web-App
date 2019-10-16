@@ -19,27 +19,11 @@ import Link from '@material-ui/core/Link';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
-        <Link color="inherit" href="https://material-ui.com/">
-            Your Website
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'. Built with '}
-        <Link color="inherit" href="https://material-ui.com/">
-            Material-UI.
-        </Link>
-        </Typography>
-    );
-}
-
 const sections = {
     Home: <Home/>,
     Calendar: <Calendar/>,
     Countdown: <Countdown/>,
-    Email: <Email/>
+    Soon: <div/>
 };
 
 // TODO: https://joanmira.com/tutorial-build-a-weather-app-with-react/
@@ -110,6 +94,7 @@ class Welcome extends React.Component {
             </Container>
             {/* Footer */}
             <footer className={classes.footer}>
+                <Email/>
                 <Container maxWidth="lg">
                 <Typography variant="h6" align="center" gutterBottom>
                     TODO:
@@ -119,11 +104,11 @@ class Welcome extends React.Component {
                 </Typography>
 
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Complete countdown - persist data, add new countdowns, add image for countdown
+                    Add image for countdown
                 </Typography>
 
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Happy birthday homepage
+                    Pick color for message board (Brian or Emma)
                 </Typography>
 
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
@@ -131,12 +116,8 @@ class Welcome extends React.Component {
                 </Typography>
 
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Create image set / blog entries / something to replace texting
-                </Typography>
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
                     Save images in one tab, use them in countdowns, main page, etc
                 </Typography>
-                <Copyright />
                 </Container>
             </footer>
             {/* End footer */}

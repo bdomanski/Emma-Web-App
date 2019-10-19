@@ -18,6 +18,7 @@ export const styles = theme => ({
       display: 'inline',
     },
     toolbar: {
+        margin: '8px',
         borderBottom: `1px solid ${theme.palette.divider}`,
     },
     toolbarTitle: {
@@ -95,7 +96,7 @@ export const styles = theme => ({
       justifyContent: 'space-around'
     },
     divider: {
-      marginBottom: theme.spacing(2),
+      marginBottom: theme.spacing(4),
     },
     home: {
         display: 'flex',
@@ -115,4 +116,11 @@ export const styles = theme => ({
     noteBody: {
         whiteSpace: 'pre'
     },
+    locationButton: {
+        margin: '1px',
+        marginTop: '0px'
+    },
+    topGrid: {
+        margin: '8px'
+    }
 });

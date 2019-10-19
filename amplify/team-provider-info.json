@@ -1,0 +1,19 @@
+{
+    "env": {
+        "awscloudformation": {
+            "AuthRoleName": "emmaapp-env-20191019120808-authRole",
+            "UnauthRoleArn": "arn:aws:iam::106747386610:role/emmaapp-env-20191019120808-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::106747386610:role/emmaapp-env-20191019120808-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "emmaapp-env-20191019120808-deployment",
+            "UnauthRoleName": "emmaapp-env-20191019120808-unauthRole",
+            "StackName": "emmaapp-env-20191019120808",
+            "StackId": "arn:aws:cloudformation:us-east-2:106747386610:stack/emmaapp-env-20191019120808/a3ff0a80-f28a-11e9-9258-021e2396e2cc"
+        },
+        "categories": {
+            "auth": {
+                "emmaapp9d7675a7": {}
+            }
+        }
+    }
+}

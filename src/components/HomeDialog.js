@@ -66,7 +66,9 @@ class HomeDialog extends React.Component {
                 label="Name"
                 type="email"
                 onChange={this.handleNameChange.bind(this)}
+                multiline
                 fullWidth
+                rowsMax="1"
             />
             <TextField
                 className={classes.noteBody}

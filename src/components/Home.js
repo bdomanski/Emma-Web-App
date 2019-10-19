@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-css'
+import { Storage } from 'aws-amplify';
 
 import { styles } from '../material/constants';
 import HomeDialog from './HomeDialog';
@@ -16,22 +17,40 @@ class Home extends React.Component {
 
     constructor(props) {
         super(props);
+        this.storagekey = 'tiledata';
+
+        Storage.get(this.storagekey, { download: true })
+            .then(result => {
+                console.log(result.Body.toString());
+                this.setState({
+                    tileData: JSON.parse(result.Body.toString())
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
         this.state = {
-            tileData: JSON.parse(localStorage.getItem('notes')) || []
+            tileData: []
         };
+
     }
 
     handleNewNote(name, body) {
         this.state.tileData.push({ name: name, body: body });
         this.state.tileData.sort((a, b) => (a.body.length > b.body.length) ? 1 : -1);
-        localStorage.setItem('notes', JSON.stringify(this.state.tileData));
+        Storage.put(this.storagekey, JSON.stringify(this.state.tileData))
+            .then (result => console.log(result))
+            .catch(err => console.log(err));
         this.setState({ tileData: this.state.tileData });
     }
 
     handleDelete(event) {
         this.state.tileData.splice(event.currentTarget.value, 1);
         this.state.tileData.sort((a, b) => (a.body.length > b.body.length) ? 1 : -1);
-        localStorage.setItem('notes', JSON.stringify(this.state.tileData));
+        Storage.put(this.storagekey, JSON.stringify(this.state.tileData))
+            .then (result => console.log(result))
+            .catch(err => console.log(err));
         this.setState({ tileData: this.state.tileData });
     }
 
@@ -39,7 +58,7 @@ class Home extends React.Component {
         const { classes } = this.props;
 
         return this.state.tileData.reverse().map((tile, index) => (
-            <Paper className={classes.homePaper}>
+            <Paper className={classes.homePaper} key={index}>
                 <Grid container wrap="nowrap" spacing={2}>
                     <Grid item xs>
                         <Typography variant='h5'>{tile.name}</Typography>
@@ -69,7 +88,7 @@ class Home extends React.Component {
             </Grid>
 
             <Masonry
-                breakpointCols={this.state.tileData.length < 3 ? this.state.tileData.length : 3}
+                breakpointCols={{default: this.state.tileData.length < 3 ? this.state.tileData.length : 3}}
                 className={classes.masonryGrid}
                 columnClassName={classes.masonryGridColumn}
             >

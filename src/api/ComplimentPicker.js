@@ -1,0 +1,38 @@
+const compliments = [
+    "You're beatiful",
+    "You're gorgeous",
+    "I love your butt ;)",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+]
+
+export default function picker() {
+
+}

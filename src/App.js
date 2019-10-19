@@ -1,6 +1,10 @@
 import React from 'react';
 import './App.css';
 import Welcome from './components/Welcome';
+import Amplify from 'aws-amplify';
+import awsconfig from './aws-exports';
+
+Amplify.configure(awsconfig);
 
 class App extends React.Component {
 

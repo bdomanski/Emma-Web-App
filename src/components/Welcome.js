@@ -9,6 +9,7 @@ import Email from './Email';
 import Countdown from './Countdown';
 import Forecast from '../api/Forecast';
 import LocationDialog from './LocationDialog';
+import { Compliment } from '../api/ComplimentPicker'
 
 import Geocode from 'react-geocode';
 
@@ -85,16 +86,24 @@ class Welcome extends React.Component {
                     <Grid xl container direction="row" justify="center" alignItems="flex-start" spacing={2} className={classes.topGrid}>
                         <LocationDialog handleNewLocation={this.handleLocationChange.bind(this)} value={0} />
                         <Forecast latitude={this.state.lats[0]} longitude={this.state.longs[0]} name={this.state.locs[0]} />
-                        <Typography
-                            component="h2"
-                            variant="h5"
-                            color="inherit"
-                            align="center"
-                            noWrap
-                            className={classes.toolbarTitle}
-                        >
-                            {emoji.emojify('Happy Birthday Emma! :heart:')}
-                        </Typography>
+                        <Grid xl className={classes.topGrid}>
+                            <Typography
+                                component="h2"
+                                variant="h5"
+                                color="inherit"
+                                align="center"
+                                noWrap
+                                className={classes.toolbarTitle}
+                            >
+                                {emoji.emojify('Happy Birthday Emma! :heart:')}
+                            </Typography>
+                            <Typography align="center">
+                                Compliment of the day:
+                            </Typography>
+                            <Typography align="center">
+                                {Compliment((new Date()).getDate())}
+                            </Typography>
+                        </Grid>
                         <LocationDialog handleNewLocation={this.handleLocationChange.bind(this)} value={1} />
                         <Forecast latitude={this.state.lats[1]} longitude={this.state.longs[1]} name={this.state.locs[1]} />
                     </Grid>
@@ -127,24 +136,17 @@ class Welcome extends React.Component {
                 <Typography variant="h6" align="center" gutterBottom>
                     TODO:
                 </Typography>
+
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Pick location for weather data
+                    Add compliment of the day
                 </Typography>
 
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Add image for countdown
+                    Make happy / sad email buttons work
                 </Typography>
 
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Pick color for message board (Brian or Emma)
-                </Typography>
-
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Update Google Calendar
-                </Typography>
-
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Save images in one tab, use them in countdowns, main page, etc
+                    Change colors / overall theme to look nicer
                 </Typography>
                 </Container>
             </footer>

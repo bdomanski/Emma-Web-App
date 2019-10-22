@@ -10,18 +10,28 @@ export const styles = theme => ({
       margin: `${theme.spacing(1)}px auto`,
       padding: theme.spacing(2),
     },
-    homePaper: {
+    homePaper0: {
       marginBottom: theme.spacing(2),
       padding: theme.spacing(2),
+    },
+    homePaperE: {
+      marginBottom: theme.spacing(2),
+      padding: theme.spacing(2),
+      backgroundColor: '#ff80aa'
+    },
+    homePaperB: {
+      marginBottom: theme.spacing(2),
+      padding: theme.spacing(2),
+      backgroundColor: '#a3addb'
     },
     inline: {
       display: 'inline',
     },
     toolbar: {
-        margin: '8px',
         borderBottom: `1px solid ${theme.palette.divider}`,
     },
     toolbarTitle: {
+        margin: '20px',
         flex: 1,
     },
     toolbarSecondary: {
@@ -70,6 +80,14 @@ export const styles = theme => ({
     cardMedia: {
         width: 160,
     },
+    dialog0: {
+    },
+    dialogE: {
+        backgroundColor: '#ff80aa'
+    },
+    dialogB: {
+        backgroundColor: '#a3addb'
+    },
     markdown: {
         ...theme.typography.body2,
         padding: theme.spacing(3, 0),
@@ -112,9 +130,6 @@ export const styles = theme => ({
     masonryGridColumn: {
         padding: theme.spacing(1),
         backgroundClip: 'padding-box',
-    },
-    noteBody: {
-        whiteSpace: 'pre'
     },
     locationButton: {
         margin: '1px',

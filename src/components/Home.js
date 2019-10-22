@@ -21,14 +21,20 @@ class Home extends React.Component {
 
         Storage.get(this.storagekey, { download: true })
             .then(result => {
-                console.log(result.Body.toString());
                 this.setState({
                     tileData: JSON.parse(result.Body.toString())
                 });
             })
             .catch(err => {
                 console.log(err);
-            });
+        });
+
+        const { classes } = this.props;
+        this.colors = {
+            default: classes.homePaper0,
+            emma: classes.homePaperE,
+            brian: classes.homePaperB
+        }
 
         this.state = {
             tileData: []
@@ -36,8 +42,8 @@ class Home extends React.Component {
 
     }
 
-    handleNewNote(name, body) {
-        this.state.tileData.push({ name: name, body: body });
+    handleNewNote(name, body, color) {
+        this.state.tileData.push({ name: name, body: body, color: color });
         this.state.tileData.sort((a, b) => (a.body.length > b.body.length) ? 1 : -1);
         Storage.put(this.storagekey, JSON.stringify(this.state.tileData))
             .then (result => console.log(result))
@@ -58,7 +64,7 @@ class Home extends React.Component {
         const { classes } = this.props;
 
         return this.state.tileData.reverse().map((tile, index) => (
-            <Paper className={classes.homePaper} key={index}>
+            <Paper className={this.colors[tile.color] || classes.homePaper0} key={index}>
                 <Grid container wrap="nowrap" spacing={2}>
                     <Grid item xs>
                         <Typography variant='h5'>{tile.name}</Typography>

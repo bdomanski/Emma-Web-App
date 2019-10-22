@@ -9,16 +9,29 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 class HomeDialog extends React.Component {
 
     constructor(props) {
         super(props);
+
+        const { classes } = this.props;
+
+        this.colors = {
+            default: classes.dialog0,
+            emma: classes.dialogE,
+            brian: classes.dialogB
+        }
+
         this.state = {
             open: false,
             name: '',
-            body: ''
+            body: '',
+            checkBrian: false,
+            checkEmma: false,
+            color: 'default'
         };
     }
 
@@ -38,8 +51,25 @@ class HomeDialog extends React.Component {
         this.setState({ body: body.target.value });
     }
 
+    handleCheckbox(event) {
+        if(event.currentTarget.value === 'emma') {
+            this.setState({
+                checkBrian: false,
+                checkEmma: !this.state.checkEmma,
+                color: this.state.checkEmma ? 'default' : 'emma'
+            });
+        }
+        else if(event.currentTarget.value === 'brian') {
+            this.setState({
+                checkBrian: !this.state.checkBrian,
+                checkEmma: false,
+                color: this.state.checkBrian ? 'default' : 'brian'
+            });
+        }
+    }
+
     handleNewNote() {
-        this.props.handleNewNote(this.state.name, this.state.body);
+        this.props.handleNewNote(this.state.name, this.state.body, this.state.color);
         this.handleClose();
     }
 
@@ -57,13 +87,12 @@ class HomeDialog extends React.Component {
             New Note
         </Button>
         <Dialog open={this.state.open} onClose={this.handleClose.bind(this)} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title">Countdown</DialogTitle>
-            <DialogContent>
+            <DialogContent className={this.colors[this.state.color]}>
             <TextField
                 autoFocus
                 margin="dense"
                 id="name"
-                label="Name"
+                label="Title"
                 type="email"
                 onChange={this.handleNameChange.bind(this)}
                 multiline
@@ -71,7 +100,6 @@ class HomeDialog extends React.Component {
                 rowsMax="1"
             />
             <TextField
-                className={classes.noteBody}
                 margin="dense"
                 id="body"
                 label="Body"
@@ -81,6 +109,30 @@ class HomeDialog extends React.Component {
                 multiline
                 rowsMax="20"
             />
+
+            <FormControlLabel
+                control={
+                <Checkbox
+                    checked={this.state.checkEmma}
+                    onChange={this.handleCheckbox.bind(this)}
+                    value="emma"
+                    color="secondary"
+                />
+                }
+                label="Emma"
+            />
+            <FormControlLabel
+                control={
+                <Checkbox
+                    checked={this.state.checkBrian}
+                    onChange={this.handleCheckbox.bind(this)}
+                    value="brian"
+                    color="primary"
+                />
+                }
+                label="Brian"
+            />
+
             </DialogContent>
             <DialogActions>
             <Button onClick={this.handleClose.bind(this)} color="primary">

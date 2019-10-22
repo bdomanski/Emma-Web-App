@@ -7,6 +7,7 @@ import CountdownDialog from './CountdownDialog';
 
 import { withStyles } from '@material-ui/core/styles';
 import Checkbox from '../images/checkbox.png';
+import Waiting from '../images/waiting.png';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/moment';
@@ -58,7 +59,7 @@ class Countdown extends React.Component {
             <Paper className={classes.paper}>
                 <Grid container wrap="nowrap" spacing={2}>
                     <Grid item>
-                        <Avatar alt="Checkbox" src={Checkbox} />
+                        <Avatar alt="Checkbox" src={this.getTimeDiff(item.endTime) === 'Complete!' ? Checkbox : Waiting} />
                     </Grid>
                     <Grid item xs>
                         <Typography variant='h5'>{item.name}</Typography>

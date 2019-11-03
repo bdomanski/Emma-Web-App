@@ -1,3 +1,11 @@
+export const myPalette = {
+    blue: '#00bcd4',
+    green: '#4caf50',
+    orange: '#ff9800',
+    red: '#f44336',
+    purple: '#9c27b0'
+}
+
 export const styles = theme => ({
     root: {
       width: '100%',
@@ -17,12 +25,14 @@ export const styles = theme => ({
     homePaperE: {
       marginBottom: theme.spacing(2),
       padding: theme.spacing(2),
-      backgroundColor: '#ff80aa'
+      color: theme.palette.background.paper,
+      backgroundColor: myPalette.purple
     },
     homePaperB: {
       marginBottom: theme.spacing(2),
       padding: theme.spacing(2),
-      backgroundColor: '#a3addb'
+      color: theme.palette.background.paper,
+      backgroundColor: myPalette.orange
     },
     inline: {
       display: 'inline',
@@ -37,10 +47,13 @@ export const styles = theme => ({
     toolbarSecondary: {
         justifyContent: 'space-between',
         overflowX: 'auto',
+        backgroundColor: theme.palette.primary.main,
     },
     toolbarLink: {
         padding: theme.spacing(1),
         flexShrink: 0,
+        color: '#FFFFFF',
+        fontSize: '15px'
     },
     mainFeaturedPost: {
         position: 'relative',
@@ -83,10 +96,12 @@ export const styles = theme => ({
     dialog0: {
     },
     dialogE: {
-        backgroundColor: '#ff80aa'
+        color: theme.palette.background.paper,
+        backgroundColor: myPalette.purple
     },
     dialogB: {
-        backgroundColor: '#a3addb'
+        color: theme.palette.background.paper,
+        backgroundColor: myPalette.orange
     },
     markdown: {
         ...theme.typography.body2,
@@ -104,14 +119,30 @@ export const styles = theme => ({
         marginTop: theme.spacing(8),
         padding: theme.spacing(6, 0),
     },
-    emailButton: {
+    emailButton1: {
       maxWidth: '240px',
       maxHeight: '135px',
       minWidth: '240px',
       minHeight: '135px'
     },
+    emailButton2: {
+      maxWidth: '240px',
+      maxHeight: '135px',
+      minWidth: '240px',
+      minHeight: '135px',
+      color: theme.palette.background.paper,
+      backgroundColor: myPalette.red,
+      '&:hover': {
+         background: myPalette.red,
+      },
+    },
     noteButton: {
-      justifyContent: 'space-around'
+      justifyContent: 'space-around',
+      backgroundColor: myPalette.red,
+      color: theme.palette.background.paper,
+      '&:hover': {
+         background: myPalette.red,
+      },
     },
     divider: {
       marginBottom: theme.spacing(4),
@@ -137,5 +168,9 @@ export const styles = theme => ({
     },
     topGrid: {
         margin: '8px'
+    },
+    container: {
+        backgroundColor: theme.palette.background.paper,
+        minHeight: document.documentElement.scrollHeight
     }
 });

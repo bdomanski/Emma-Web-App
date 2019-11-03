@@ -44,7 +44,7 @@ class Home extends React.Component {
 
     handleNewNote(name, body, color) {
         this.state.tileData.push({ name: name, body: body, color: color });
-        this.state.tileData.sort((a, b) => (a.body.length > b.body.length) ? 1 : -1);
+        this.state.tileData.sort((a, b) => (a.body.split(/\r\n|\r|\n/).length > b.body.split(/\r\n|\r|\n/).length) ? 1 : -1);
         Storage.put(this.storagekey, JSON.stringify(this.state.tileData))
             .then (result => console.log(result))
             .catch(err => console.log(err));
@@ -53,7 +53,7 @@ class Home extends React.Component {
 
     handleDelete(event) {
         this.state.tileData.splice(event.currentTarget.value, 1);
-        this.state.tileData.sort((a, b) => (a.body.length > b.body.length) ? 1 : -1);
+        this.state.tileData.sort((a, b) => (a.body.split(/\r\n|\r|\n/).length > b.body.split(/\r\n|\r|\n/).length) ? 1 : -1);
         Storage.put(this.storagekey, JSON.stringify(this.state.tileData))
             .then (result => console.log(result))
             .catch(err => console.log(err));
@@ -68,8 +68,8 @@ class Home extends React.Component {
                 <Grid container wrap="nowrap" spacing={2}>
                     <Grid item xs>
                         <Typography variant='h5'>{tile.name}</Typography>
-                        <Typography variant='subtitle2'>
-                            <pre style={{ fontFamily: 'inherit' }}>
+                        <Typography noWrap variant='subtitle2'>
+                            <pre style={{ fontFamily: 'inherit', whiteSpace: 'pre-wrap' }}>
                                 {tile.body}
                             </pre>
                         </Typography>

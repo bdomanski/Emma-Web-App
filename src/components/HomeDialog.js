@@ -81,7 +81,6 @@ class HomeDialog extends React.Component {
         <Button
             className={classes.noteButton}
             variant="contained"
-            color="primary"
             size="large"
             onClick={this.handleClickOpen.bind(this)}>
             New Note

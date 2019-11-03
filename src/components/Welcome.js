@@ -23,10 +23,10 @@ import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 
 const sections = {
-    Notes: <Home/>,
-    Calendar: <Calendar/>,
-    Countdown: <Countdown/>,
-    Soon: <div/>
+    NOTES: <Home/>,
+    CALENDAR: <Calendar/>,
+    COUNTDOWN: <Countdown/>,
+    SOON: <div/>
 };
 
 // TODO: https://joanmira.com/tutorial-build-a-weather-app-with-react/
@@ -80,7 +80,7 @@ class Welcome extends React.Component {
         return (
             <React.Fragment>
             <CssBaseline />
-            <Container maxWidth="lg" spacing={2}>
+            <Container fixed maxWidth="lg" spacing={2} className={classes.container}>
             {/* Header */}
                 <Toolbar className={classes.toolbar}>
                     <Grid xl container direction="row" justify="center" alignItems="flex-start" spacing={2} className={classes.topGrid}>
@@ -128,29 +128,9 @@ class Welcome extends React.Component {
             {/* Body */}
                 {this.getBody()}
             {/* End Body */}
-            </Container>
-            {/* Footer */}
-            <footer className={classes.footer}>
+                <Divider className={classes.divider}/>
                 <Email/>
-                <Container maxWidth="lg">
-                <Typography variant="h6" align="center" gutterBottom>
-                    TODO:
-                </Typography>
-
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Add compliment of the day
-                </Typography>
-
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Make happy / sad email buttons work
-                </Typography>
-
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Change colors / overall theme to look nicer
-                </Typography>
-                </Container>
-            </footer>
-            {/* End footer */}
+            </Container>
             </React.Fragment>
         );
     }

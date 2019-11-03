@@ -48,9 +48,11 @@ class CountdownDialog extends React.Component {
     }
 
     render() {
+        const { classes } = this.props;
+
         return (
         <div>
-        <Button variant="contained" color="primary" size="large" onClick={this.handleClickOpen.bind(this)}>
+        <Button variant="contained" color="primary" size="large" onClick={this.handleClickOpen.bind(this)} className={classes.noteButton}>
             New Countdown
         </Button>
         <Dialog open={this.state.open} onClose={this.handleClose.bind(this)} aria-labelledby="form-dialog-title">

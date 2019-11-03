@@ -3,7 +3,7 @@ import './App.css';
 import Welcome from './components/Welcome';
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
-import Confetti from 'react-confetti';
+// import Confetti from 'react-confetti';
 import BackGround from './images/canals.jpg';
 
 Amplify.configure(awsconfig);
@@ -18,7 +18,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="admin-bg">
-                <Confetti recycle={false} numberOfPieces={400} height={document.documentElement.scrollHeight}/>
+                {/* <Confetti recycle={false} numberOfPieces={400} height={document.documentElement.scrollHeight}/> */}
                 <img src={BackGround} alt="bg" className="bg"/>
                 <Welcome/>
             </div>

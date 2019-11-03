@@ -101,7 +101,7 @@ class Welcome extends React.Component {
                                 Compliment of the day:
                             </Typography>
                             <Typography align="center">
-                                {Compliment((new Date()).getDate())}
+                                {Compliment((new Date()).getDate() - 1)}
                             </Typography>
                         </Grid>
                         <LocationDialog handleNewLocation={this.handleLocationChange.bind(this)} value={1} />

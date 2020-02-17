@@ -63,7 +63,7 @@ class Home extends React.Component {
     getMasonryItems() {
         const { classes } = this.props;
 
-        return this.state.tileData.reverse().map((tile, index) => (
+        return this.state.tileData.map((tile, index) => (
             <Paper className={this.colors[tile.color] || classes.homePaper0} key={index}>
                 <Grid container wrap="nowrap" spacing={2}>
                     <Grid item xs>
@@ -86,6 +86,10 @@ class Home extends React.Component {
 
     render() {
         const { classes } = this.props;
+        const { isMobile } = this.props;
+        const columns = isMobile ? 1 : 3;
+
+        console.log(isMobile);
 
         return (
             <div>
@@ -94,7 +98,7 @@ class Home extends React.Component {
             </Grid>
 
             <Masonry
-                breakpointCols={{default: this.state.tileData.length < 3 ? this.state.tileData.length : 3}}
+                breakpointCols={{default: this.state.tileData.length < columns ? this.state.tileData.length : columns}}
                 className={classes.masonryGrid}
                 columnClassName={classes.masonryGridColumn}
             >

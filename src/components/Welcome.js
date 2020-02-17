@@ -22,13 +22,6 @@ import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 
-const sections = {
-    NOTES: <Home/>,
-    CALENDAR: <Calendar/>,
-    COUNTDOWN: <Countdown/>,
-    SOON: <div/>
-};
-
 // TODO: https://joanmira.com/tutorial-build-a-weather-app-with-react/
 class Welcome extends React.Component {
 
@@ -40,11 +33,36 @@ class Welcome extends React.Component {
         const currentPage = window.location.href.split('/').pop();
 
         this.state = {
-            body: sections[currentPage] ? sections[currentPage] : <Home/>,
+            body: this.getSection(currentPage) ?
+                this.getSection(currentPage) :
+                <Home isMobile={props.isMobile}/>,
             locs: JSON.parse(localStorage.getItem('locations')) || ['Grand Rapids', 'Ann Arbor'],
             lats: JSON.parse(localStorage.getItem('latitudes')) || [42.9634, 42.2808],
             longs: JSON.parse(localStorage.getItem('longitudes')) || [-85.6681, -83.7430]
         };
+    }
+
+    componentDidUpdate(prevProps) {
+        if(prevProps.isMobile !== this.props.isMobile) {
+            const currentPage = window.location.href.split('/').pop();
+            this.setState({
+                body: this.getSection(currentPage) ?
+                    this.getSection(currentPage) :
+                    <Home isMobile={this.props.isMobile}/>
+            });
+        }
+    }
+
+    getSection(key) {
+        const { isMobile } = this.props;
+        const sections = {
+            NOTES: <Home isMobile={isMobile}/>,
+            CALENDAR: <Calendar isMobile={isMobile}/>,
+            COUNTDOWN: <Countdown isMobile={isMobile}/>,
+            SOON: <div/>
+        };
+
+        return sections[key];
     }
 
     handleLocationChange(lat, long, name, id) {
@@ -67,7 +85,7 @@ class Welcome extends React.Component {
     }
 
     onSectionChange(event) {
-        this.setState({ body: sections[event.target.text] });
+        this.setState({ body: this.getSection([event.target.text]) });
     }
 
     getBody() {
@@ -76,17 +94,28 @@ class Welcome extends React.Component {
 
     render() {
         const { classes } = this.props;
+        const { isMobile } = this.props;
+        const sections = {
+            NOTES: <Home isMobile={isMobile}/>,
+            CALENDAR: <Calendar isMobile={isMobile}/>,
+            COUNTDOWN: <Countdown isMobile={isMobile}/>,
+            SOON: <div/>
+        };
+
+        const containerClass = isMobile ? classes.mobileContainer : classes.container;
 
         return (
             <React.Fragment>
             <CssBaseline />
-            <Container fixed maxWidth="lg" spacing={2} className={classes.container}>
+            <Container fixed maxWidth="lg" spacing={2} className={containerClass}>
             {/* Header */}
                 <Toolbar className={classes.toolbar}>
-                    <Grid xl container direction="row" justify="center" alignItems="flex-start" spacing={2} className={classes.topGrid}>
-                        <LocationDialog handleNewLocation={this.handleLocationChange.bind(this)} value={0} />
-                        <Forecast latitude={this.state.lats[0]} longitude={this.state.longs[0]} name={this.state.locs[0]} />
-                        <Grid xl className={classes.topGrid}>
+                    <Grid xl container direction="row" justify="center" alignItems="center" spacing={2} className={classes.topGrid}>
+                        <div className={classes.item1}>
+                            <LocationDialog handleNewLocation={this.handleLocationChange.bind(this)} value={0} />
+                            <Forecast latitude={this.state.lats[0]} longitude={this.state.longs[0]} name={this.state.locs[0]} />
+                        </div>
+                        <Grid xl className={isMobile ? classes.item3 : classes.item2}>
                             <Typography
                                 component="h2"
                                 variant="h5"
@@ -104,8 +133,10 @@ class Welcome extends React.Component {
                                 {Compliment((new Date()).getDate() - 1)}
                             </Typography>
                         </Grid>
-                        <LocationDialog handleNewLocation={this.handleLocationChange.bind(this)} value={1} />
-                        <Forecast latitude={this.state.lats[1]} longitude={this.state.longs[1]} name={this.state.locs[1]} />
+                        <div className={isMobile ? classes.item2 : classes.item3}>
+                            <LocationDialog handleNewLocation={this.handleLocationChange.bind(this)} value={1} />
+                            <Forecast latitude={this.state.lats[1]} longitude={this.state.longs[1]} name={this.state.locs[1]} />
+                        </div>
                     </Grid>
                 </Toolbar>
                 <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>

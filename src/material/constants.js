@@ -172,5 +172,22 @@ export const styles = theme => ({
     container: {
         backgroundColor: theme.palette.background.paper,
         minHeight: document.documentElement.scrollHeight
+    },
+    mobileContainer: {
+        backgroundColor: theme.palette.background.paper,
+        minHeight: document.documentElement.scrollHeight,
+        width: 700
+    },
+    item1: {
+        margin: '8px',
+        order: 1
+    },
+    item2: {
+        margin: '8px',
+        order: 2
+    },
+    item3: {
+        margin: '8px',
+        order: 3
     }
 });

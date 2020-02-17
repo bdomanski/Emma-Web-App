@@ -107,7 +107,7 @@ class Welcome extends React.Component {
         return (
             <React.Fragment>
             <CssBaseline />
-            <Container fixed maxWidth="lg" spacing={2} className={containerClass}>
+            <Container display="inline" maxWidth="lg" spacing={2} className={containerClass}>
             {/* Header */}
                 <Toolbar className={classes.toolbar}>
                     <Grid xl container direction="row" justify="center" alignItems="center" spacing={2} className={classes.topGrid}>

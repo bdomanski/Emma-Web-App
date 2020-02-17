@@ -5,6 +5,9 @@ import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
 // import Confetti from 'react-confetti';
 import BackGround from './images/canals.jpg';
+import PropTypes from 'prop-types';
+import { styles } from './material/constants';
+import { withStyles } from '@material-ui/core/styles';
 
 Amplify.configure(awsconfig);
 
@@ -37,7 +40,7 @@ class App extends React.Component {
         const isMobile = width <= 1200;
 
         return (
-            <div className="admin-bg">
+            <div>
                 {/* <Confetti recycle={false} numberOfPieces={400} height={document.documentElement.scrollHeight}/> */}
                 <img src={BackGround} alt="bg" className="bg"/>
                 <Welcome isMobile={isMobile}/>
@@ -46,4 +49,8 @@ class App extends React.Component {
     }
 }
 
-export default App;
+App.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(App);

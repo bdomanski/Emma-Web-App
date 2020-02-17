@@ -10,7 +10,7 @@ export const styles = theme => ({
     root: {
       width: '100%',
       maxWidth: 1000,
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.background.paper
     },
     paper: {
       maxWidth: 500,

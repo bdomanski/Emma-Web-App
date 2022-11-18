@@ -23,7 +23,7 @@
     "react-dom": "^16.9.0",
     "react-geocode": "^0.1.2",
     "react-masonry-component": "^6.2.1",
-    "react-scripts": "3.0.1",
+    "react-scripts": "5.0.1",
     "sendemail": "^3.4.0"
   },
   "scripts": {
